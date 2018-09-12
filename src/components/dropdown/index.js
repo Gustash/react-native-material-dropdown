@@ -376,7 +376,15 @@ export default class Dropdown extends PureComponent {
     let { data, valueExtractor } = this.props;
 
     return data
-      .findIndex((item, index) => null != item && value === valueExtractor(item, index));
+      .findIndex((item, index) => {
+        if (null != item) return false;
+
+        if (typeof value === 'object') 
+          return JSON.stringify(value) === 
+            JSON.stringify(valueExtractor(item, index));
+
+        return value === valueExtractor(item, index);
+      });
   }
 
   selectedItem() {
