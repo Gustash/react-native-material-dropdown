@@ -377,7 +377,7 @@ export default class Dropdown extends PureComponent {
 
     return data
       .findIndex((item, index) => {
-        if (null != item) return false;
+        if (null === item) return false;
 
         if (typeof value === 'object') 
           return JSON.stringify(value) === 
