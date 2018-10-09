@@ -500,7 +500,10 @@ export default class Dropdown extends PureComponent {
     }
 
     if (null == title) {
-      title = value;
+      if (typeof value !== 'object')
+        title = value;
+      else
+        title = '';
     }
 
     if ('function' === typeof renderBase) {
